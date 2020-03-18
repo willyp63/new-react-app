@@ -542,7 +542,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: monospace;
 }
 
 /**
@@ -3653,11 +3653,11 @@ video {
 }
 
 .font-serif {
-  font-family: Roboto Slab, serif;
+  font-family: serif;
 }
 
 .font-mono {
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: monospace;
 }
 
 .font-hairline {
@@ -14075,11 +14075,11 @@ video {
   }
 
   .sm\:font-serif {
-    font-family: Roboto Slab, serif;
+    font-family: serif;
   }
 
   .sm\:font-mono {
-    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: monospace;
   }
 
   .sm\:font-hairline {
@@ -24455,11 +24455,11 @@ video {
   }
 
   .md\:font-serif {
-    font-family: Roboto Slab, serif;
+    font-family: serif;
   }
 
   .md\:font-mono {
-    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: monospace;
   }
 
   .md\:font-hairline {
@@ -34835,11 +34835,11 @@ video {
   }
 
   .lg\:font-serif {
-    font-family: Roboto Slab, serif;
+    font-family: serif;
   }
 
   .lg\:font-mono {
-    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: monospace;
   }
 
   .lg\:font-hairline {
@@ -45215,11 +45215,11 @@ video {
   }
 
   .xl\:font-serif {
-    font-family: Roboto Slab, serif;
+    font-family: serif;
   }
 
   .xl\:font-mono {
-    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: monospace;
   }
 
   .xl\:font-hairline {
