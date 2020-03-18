@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind utilities;
 
-.landing-bg {
+.landing-page {
   background: rgb(2, 0, 36);
   background: linear-gradient(
     0deg,
@@ -9,4 +9,20 @@
     rgba(9, 9, 121, 1) 35%,
     rgba(0, 144, 255, 1) 100%
   );
+}
+
+.app-store-btn img {
+  @apply w-32 transform transition-transform duration-200;
+}
+
+.app-store-btn:hover img {
+  @apply scale-110;
+}
+
+.detail-item {
+  @apply flex flex-col items-center text-center text-lg;
+}
+
+.detail-item svg {
+  @apply w-12 h-12 mb-2;
 }
