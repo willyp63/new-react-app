@@ -58,8 +58,7 @@ const Landing = () => {
         <li className="detail-item my-8 sm:my-0 sm:mx-12">
           <IoIosPeople />
           <p>
-            Chat with someone completely random or someone who shares your
-            interests
+          Chat with someone near you, build relationships and make friends in your community
           </p>
         </li>
         <li className="detail-item">
