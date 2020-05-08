@@ -1,7 +1,13 @@
 import React from "react";
+import COVCalendarContainer from "./components/COVCalendarContainer";
 
-import Landing from "./components/pages/landing";
-
-const App = () => <Landing />;
+const App = () => {
+  return (
+    <div className="px-16 py-8">
+      <h1 className="text-3xl pb-8">Cove Coding Challenge</h1>
+      <COVCalendarContainer />
+    </div>
+  );
+};
 
 export default App;

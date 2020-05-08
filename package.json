@@ -1,5 +1,5 @@
 {
-  "name": "n2m-site",
+  "name": "cove-coding-challenge",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,14 +10,13 @@
     "build:style:dev": "postcss src/styles/index.css -o src/styles/tailwind.css"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "http": "0.0.0",
+    "moment": "^2.25.3",
     "path": "^0.12.7",
     "react": "^16.13.0",
+    "react-big-calendar": "^0.24.6",
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
     "react-scripts": "3.4.0"

@@ -10956,49 +10956,6 @@ video {
   transition-duration: 1000ms;
 }
 
-.landing-page {
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    0deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 144, 255, 1) 100%
-  );
-}
-
-.app-store-btn img {
-  width: 8rem;
-  --transform-translate-x: 0;
-  --transform-translate-y: 0;
-  --transform-rotate: 0;
-  --transform-skew-x: 0;
-  --transform-skew-y: 0;
-  --transform-scale-x: 1;
-  --transform-scale-y: 1;
-  transform: translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y));
-  transition-property: transform;
-  transition-duration: 200ms;
-}
-
-.app-store-btn:hover img {
-  --transform-scale-x: 1.1;
-  --transform-scale-y: 1.1;
-}
-
-.detail-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  font-size: 1.125rem;
-}
-
-.detail-item svg {
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: 0.5rem;
-}
-
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
