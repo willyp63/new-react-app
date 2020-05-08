@@ -22,7 +22,7 @@ const localizer = momentLocalizer(moment);
 const COVCalendar = () => {
   const dispatch = useDispatch();
   const calendarData = useSelector(calendarSelector);
-  
+
   // the date the calendar is currently showing
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -62,10 +62,7 @@ const COVCalendar = () => {
           onNavigate={setSelectedDate}
           // render a custom resource header with the room's name and image
           components={{
-            resourceHeader: getCOVResourceHeader({
-              roomsMap: calendarData.roomsMap,
-              showImage: calendarData.rooms.length <= 5,
-            }),
+            resourceHeader: getCOVResourceHeader(calendarData.roomsMap),
           }}
         />
       </div>
