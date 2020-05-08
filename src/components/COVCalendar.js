@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Calendar, Views, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import { getCOVResourceHeader } from "./COVResourceHeader";
+import DatePicker from "react-datepicker";
 
 const localizer = momentLocalizer(moment);
 
@@ -15,25 +16,41 @@ const localizer = momentLocalizer(moment);
  * the column of the room it is in.
  */
 const COVCalendar = ({ events, rooms, roomsMap }) => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   if (!events || !rooms || !roomsMap) {
     return null; // TODO: loading ui
   }
 
   return (
-    <Calendar
-      localizer={localizer}
-      events={events}
-      resources={rooms}
-      resourceAccessor="roomId"
-      resourceIdAccessor="id"
-      resourceTitleAccessor="id" // this causes the room's id to be passed to the resource header component instead of its name
-      views={["day"]}
-      defaultView={Views.DAY}
-      step={30}
-      components={{
-        resourceHeader: getCOVResourceHeader(roomsMap), // render a custom resource header with the room's name and image
-      }}
-    />
+    <div className="flex flex-col h-screen px-16 py-8">
+      <div className="mb-2">
+        <DatePicker selected={selectedDate} onChange={setSelectedDate} />
+      </div>
+      <div className="flex-1 min-h-0">
+        <Calendar
+          localizer={localizer}
+          events={events}
+          resources={rooms}
+          resourceAccessor="roomId"
+          resourceIdAccessor="id"
+          // this causes the room's id to be passed to the resource header component instead of its name
+          resourceTitleAccessor="id"
+          views={["day"]}
+          defaultView={Views.DAY}
+          step={30}
+          date={selectedDate}
+          onNavigate={setSelectedDate}
+          // render a custom resource header with the room's name and image
+          components={{
+            resourceHeader: getCOVResourceHeader({
+              roomsMap,
+              showImage: rooms.length <= 5,
+            }),
+          }}
+        />
+      </div>
+    </div>
   );
 };
 

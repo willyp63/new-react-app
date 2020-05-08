@@ -603,7 +603,6 @@ button.rbc-input::-moz-focus-inner {
   flex: 1 0 0%;
   align-items: flex-start;
   width: 100%;
-  max-height: 495px;
   border-top: 2px solid #ddd;
   overflow-y: auto;
   position: relative;
