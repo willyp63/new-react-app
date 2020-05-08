@@ -1,14 +1,22 @@
-export const roundDateToNearestQuarterHour = (date) => {
-  const roundedDate = new Date(date);
-  roundedDate.setMilliseconds(
-    Math.round(roundedDate.getMilliseconds() / 1000) * 1000
-  );
-  roundedDate.setSeconds(Math.round(roundedDate.getSeconds() / 60) * 60);
-  roundedDate.setMinutes(Math.round(roundedDate.getMinutes() / 15) * 15);
-  return roundedDate;
+export const doDateRangesOverlap = (start1, end1, start2, end2) => {
+  if (start1 >= start2 && start1 <= end2) { return true; }
+  if (end1 >= start2 && end1 <= end2) { return true; }
+  if (start1 <= start2 && end1 >= end2) { return true; }
+  return false;
+}
+
+export const getNextQuarterHourMarker = (date) => {
+  return date.getHours() * 4 + Math.ceil(date.getMinutes() / 15);
 };
 
-export const DATE_OPTIONS = [
+export const getDateWithQuarterHourMarker = (date, marker) => {
+  const dateWithMarker = new Date(date);
+  dateWithMarker.setHours(Math.floor(marker / 4));
+  dateWithMarker.setMinutes(marker % 4 * 15);
+  return dateWithMarker;
+};
+
+export const EVENT_TIME_OPTIONS = [
   { label: "12:00 am", value: 0 },
   { label: "12:15 am", value: 1 },
   { label: "12:30 am", value: 2 },

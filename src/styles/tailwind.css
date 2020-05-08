@@ -10970,6 +10970,11 @@ video {
   white-space: nowrap;
 }
 
+.cov-btn:disabled {
+  background-color: #ccc;
+  color: #666;
+}
+
 .cov-select {
   color: #373a3c;
   display: inline-block;
