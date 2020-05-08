@@ -36,12 +36,16 @@ const COVEventForm = ({ history }) => {
   }, [calendarData, dispatch]);
 
   useEffect(() => {
+    if (!calendarData) {
+      return;
+    }
+
     const errors = [];
     const startDate = getDateWithQuarterHourMarker(date, start);
     const endDate = getDateWithQuarterHourMarker(date, end);
 
     if (start > end) {
-      errors.push("End must be greater than start!");
+      errors.push("End Time must be greater than Start Time");
     }
 
     for (let i = 0; i < calendarData.events.length; i++) {
@@ -57,7 +61,7 @@ const COVEventForm = ({ history }) => {
 
       // check if the 2 events overlap
       if (doDateRangesOverlap(event.start, event.end, startDate, endDate)) {
-        errors.push("Conflicts with an existing event!");
+        errors.push("Conflicts with an existing event");
         break;
       }
     }
@@ -85,7 +89,7 @@ const COVEventForm = ({ history }) => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <form>
+      <form style={{width: 300}}>
         <div className="flex flex-col items-center text-red-500 mb-8">
           {errors.map((error) => (
             <span key={error}>{error}</span>
