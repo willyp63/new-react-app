@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from "react-redux";
 import { calendarSelector } from "../store/calendarReducer";
 import { fetchEvents } from "../store/calendarActions";
+import { CALENDAR_STEP } from "../constants/calendarConstants";
 
 const localizer = momentLocalizer(moment);
 
@@ -57,7 +58,7 @@ const COVCalendar = () => {
           resourceTitleAccessor="id"
           views={["day"]}
           defaultView={Views.DAY}
-          step={15}
+          step={CALENDAR_STEP}
           date={selectedDate}
           onNavigate={setSelectedDate}
           // render a custom resource header with the room's name and image

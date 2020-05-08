@@ -5,13 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { calendarSelector } from "../store/calendarReducer";
 import { fetchEvents, addEvent } from "../store/calendarActions";
 import {
-  EVENT_TIME_OPTIONS,
-  getNextQuarterHourMarker,
-  getDateWithQuarterHourMarker,
+  getStepAfterDate,
+  getDateWithStep,
   doDateRangesOverlap,
+  getTimeStepOptions,
 } from "../utils/dateUtils";
 import { randomId } from "../utils/idUtils";
 import ReactDatePicker from "react-datepicker";
+import {
+  CALENDAR_STEP,
+  CALENDAR_DEFAULT_EVENT_LENGTH,
+} from "../constants/calendarConstants";
 
 const COVEventForm = ({ history }) => {
   const dispatch = useDispatch();
@@ -19,8 +23,10 @@ const COVEventForm = ({ history }) => {
 
   // form state
   const [date, setDate] = useState(new Date());
-  const [start, setStart] = useState(getNextQuarterHourMarker(new Date()));
-  const [end, setEnd] = useState(getNextQuarterHourMarker(new Date()) + 4);
+  const [start, setStart] = useState(getStepAfterDate(new Date()));
+  const [end, setEnd] = useState(
+    getStepAfterDate(new Date()) + CALENDAR_DEFAULT_EVENT_LENGTH
+  );
   const [roomId, setRoomId] = useState(null);
   const [errors, setErrors] = useState([]);
 
@@ -41,8 +47,8 @@ const COVEventForm = ({ history }) => {
     }
 
     const errors = [];
-    const startDate = getDateWithQuarterHourMarker(date, start);
-    const endDate = getDateWithQuarterHourMarker(date, end);
+    const startDate = getDateWithStep(date, start);
+    const endDate = getDateWithStep(date, end);
 
     if (start > end) {
       errors.push("End Time must be greater than Start Time");
@@ -79,8 +85,8 @@ const COVEventForm = ({ history }) => {
     dispatch(
       addEvent({
         id: randomId(),
-        start: getDateWithQuarterHourMarker(date, start),
-        end: getDateWithQuarterHourMarker(date, end),
+        start: getDateWithStep(date, start),
+        end: getDateWithStep(date, end),
         roomId,
       })
     );
@@ -89,7 +95,7 @@ const COVEventForm = ({ history }) => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <form style={{width: 300}}>
+      <form style={{ width: 300 }}>
         <div className="flex flex-col items-center text-red-500 mb-8">
           {errors.map((error) => (
             <span key={error}>{error}</span>
@@ -107,7 +113,7 @@ const COVEventForm = ({ history }) => {
             id="start"
             value={start}
             onChange={({ target: { value: start } }) => setStart(start)}
-            options={EVENT_TIME_OPTIONS}
+            options={getTimeStepOptions(CALENDAR_STEP)}
           />
         </div>
         <div className="mb-8">
@@ -116,7 +122,7 @@ const COVEventForm = ({ history }) => {
             id="end"
             value={end}
             onChange={({ target: { value: end } }) => setEnd(end)}
-            options={EVENT_TIME_OPTIONS}
+            options={getTimeStepOptions(CALENDAR_STEP)}
           />
         </div>
         <div className="mb-8">

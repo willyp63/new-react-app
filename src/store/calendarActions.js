@@ -1,4 +1,4 @@
-const eventsUrl = "http://localhost:8080/events.json";
+import { API_URL } from "../constants/apiConstants";
 
 export const REQUEST_EVENTS = "REQUEST_EVENTS";
 const requestEvents = () => {
@@ -19,7 +19,7 @@ export const fetchEvents = () => {
   return (dispatch) => {
     dispatch(requestEvents());
 
-    fetch(eventsUrl)
+    fetch(API_URL)
       .then((response) => response.json())
       .then((events) => {
         dispatch(receiveGroups(events));
