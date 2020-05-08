@@ -4,7 +4,7 @@
  *
  * The smaller [CALENDAR_STEP] is, the more zoomed in the calendar will be.
  */
-export const CALENDAR_STEP = 10;
+export const CALENDAR_STEP = 15;
 
 /**
  * The default length for a new event in [CALENDAR_STEP]s.
