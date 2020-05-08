@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Calendar, Views, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import { getCOVResourceHeader } from "./COVResourceHeader";
 import DatePicker from "react-datepicker";
+import { useDispatch, useSelector } from "react-redux";
+import { calendarSelector } from "../store/calendarReducer";
+import { fetchEvents } from "../store/calendarActions";
 
 const localizer = momentLocalizer(moment);
 
@@ -16,10 +19,22 @@ const localizer = momentLocalizer(moment);
  * The calendar is split up into columns, one for each room. And each event is shown under
  * the column of the room it is in.
  */
-const COVCalendar = ({ events, rooms, roomsMap }) => {
+const COVCalendar = () => {
+  const dispatch = useDispatch();
+  const calendarData = useSelector(calendarSelector);
+  
+  // the date the calendar is currently showing
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  if (!events || !rooms || !roomsMap) {
+  // fetch calendar data if it is not in the store
+  // TODO: duplicate code in COVEventForm.js
+  useEffect(() => {
+    if (!calendarData) {
+      dispatch(fetchEvents());
+    }
+  }, [calendarData, dispatch]);
+
+  if (!calendarData) {
     return null; // TODO: loading ui
   }
 
@@ -27,13 +42,15 @@ const COVCalendar = ({ events, rooms, roomsMap }) => {
     <div className="flex flex-col h-screen px-16 py-8">
       <div className="flex justify-between mb-2">
         <DatePicker selected={selectedDate} onChange={setSelectedDate} />
-        <Link to="/new" className="cov-btn">New Event</Link>
+        <Link to="/new" className="cov-btn">
+          New Event
+        </Link>
       </div>
       <div className="flex-1 min-h-0">
         <Calendar
           localizer={localizer}
-          events={events}
-          resources={rooms}
+          events={calendarData.events}
+          resources={calendarData.rooms}
           resourceAccessor="roomId"
           resourceIdAccessor="id"
           // this causes the room's id to be passed to the resource header component instead of its name
@@ -46,8 +63,8 @@ const COVCalendar = ({ events, rooms, roomsMap }) => {
           // render a custom resource header with the room's name and image
           components={{
             resourceHeader: getCOVResourceHeader({
-              roomsMap,
-              showImage: rooms.length <= 5,
+              roomsMap: calendarData.roomsMap,
+              showImage: calendarData.rooms.length <= 5,
             }),
           }}
         />
