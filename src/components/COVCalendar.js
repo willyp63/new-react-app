@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Calendar, Views, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
@@ -24,8 +25,9 @@ const COVCalendar = ({ events, rooms, roomsMap }) => {
 
   return (
     <div className="flex flex-col h-screen px-16 py-8">
-      <div className="mb-2">
+      <div className="flex justify-between mb-2">
         <DatePicker selected={selectedDate} onChange={setSelectedDate} />
+        <Link to="/new" className="cov-btn">New Event</Link>
       </div>
       <div className="flex-1 min-h-0">
         <Calendar
