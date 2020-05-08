@@ -57,7 +57,7 @@ const COVCalendar = () => {
           resourceTitleAccessor="id"
           views={["day"]}
           defaultView={Views.DAY}
-          step={30}
+          step={15}
           date={selectedDate}
           onNavigate={setSelectedDate}
           // render a custom resource header with the room's name and image
