@@ -12,6 +12,10 @@ Finally, when I saw that you would be testing my code with a larger data-set, I 
 
 ## Instructions
 
+** You will need to have Node and NPM installed and I think that's it... (email me with any issues)
+
+**My versions are Node@12.14.1 and NPM@6.13.7
+
 - `git clone https://github.com/willyp63/cove-coding-challenge.git`
 
 - `cd cove-coding-challenge`
