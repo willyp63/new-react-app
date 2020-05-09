@@ -12,9 +12,8 @@ import {
 } from "../utils/dateUtils";
 import { randomId } from "../utils/idUtils";
 import {
-  CALENDAR_STEP,
+  CALENDAR_STEP_SIZE,
   CALENDAR_DEFAULT_EVENT_LENGTH,
-  CALENDAR_DEFAULT_EVENT_START,
 } from "../constants/calendarConstants";
 import {
   calendarSelectedWindowSelector,
@@ -23,6 +22,7 @@ import {
 import { eventsSelector } from "../store/reducers/eventsReducer";
 import { roomsSelector } from "../store/reducers/roomsReducer";
 import { addEvent } from "../store/actions/eventActions";
+import { selectCalendarDate } from "../store/actions/calendarActions";
 
 /**
  * Form for adding a new event to the calendar
@@ -37,15 +37,13 @@ const COVEventForm = ({ history }) => {
 
   // form state
   const [date, setDate] = useState(selectedDate || new Date());
-  const [start, setStart] = useState(
-    selectedWindow
-      ? getStepFromDate(selectedWindow.start)
-      : CALENDAR_DEFAULT_EVENT_START
+  const [startStep, setStartStep] = useState(
+    getStepFromDate(selectedWindow ? selectedWindow.start : new Date())
   );
-  const [end, setEnd] = useState(
+  const [endStep, setEndStep] = useState(
     selectedWindow
       ? getStepFromDate(selectedWindow.end)
-      : CALENDAR_DEFAULT_EVENT_START + CALENDAR_DEFAULT_EVENT_LENGTH
+      : startStep + CALENDAR_DEFAULT_EVENT_LENGTH
   );
   const [roomId, setRoomId] = useState(
     selectedWindow ? selectedWindow.roomId : null
@@ -63,11 +61,11 @@ const COVEventForm = ({ history }) => {
   useEffect(() => {
     const errors = [];
 
-    const startDate = getDateWithStep(date, start);
-    const endDate = getDateWithStep(date, end);
+    const startDate = getDateWithStep(date, startStep);
+    const endDate = getDateWithStep(date, endStep);
 
-    // make sure [end] comes after [start]
-    if (start > end) {
+    // make sure [endStep] comes after [startStep]
+    if (startStep > endStep) {
       errors.push("End Time must be greater than Start Time");
     }
 
@@ -91,7 +89,12 @@ const COVEventForm = ({ history }) => {
     }
 
     setErrors(errors);
-  }, [events, date, start, end, roomId]);
+  }, [events, date, startStep, endStep, roomId]);
+
+  const onDateChange = (newDate) => {
+    dispatch(selectCalendarDate(newDate));
+    setDate(newDate);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -100,8 +103,8 @@ const COVEventForm = ({ history }) => {
     dispatch(
       addEvent({
         id: randomId(),
-        start: getDateWithStep(date, start),
-        end: getDateWithStep(date, end),
+        start: getDateWithStep(date, startStep),
+        end: getDateWithStep(date, endStep),
         roomId,
       })
     );
@@ -120,24 +123,26 @@ const COVEventForm = ({ history }) => {
           <label htmlFor="date" className="mr-4">
             Date:
           </label>
-          <ReactDatePicker id="date" selected={date} onChange={setDate} />
+          <ReactDatePicker id="date" selected={date} onChange={onDateChange} />
         </div>
         <div className="mb-8">
           <COVSelect
             label="Start Time:"
             id="start"
-            value={start}
-            onChange={({ target: { value: start } }) => setStart(start)}
-            options={getTimeStepOptions(CALENDAR_STEP)}
+            value={startStep}
+            onChange={({ target: { value: startStep } }) =>
+              setStartStep(startStep)
+            }
+            options={getTimeStepOptions(CALENDAR_STEP_SIZE)}
           />
         </div>
         <div className="mb-8">
           <COVSelect
             label="End Time:"
             id="end"
-            value={end}
-            onChange={({ target: { value: end } }) => setEnd(end)}
-            options={getTimeStepOptions(CALENDAR_STEP)}
+            value={endStep}
+            onChange={({ target: { value: endStep } }) => setEndStep(endStep)}
+            options={getTimeStepOptions(CALENDAR_STEP_SIZE)}
           />
         </div>
         <div className="mb-8">

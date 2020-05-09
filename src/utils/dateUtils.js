@@ -1,4 +1,4 @@
-import { CALENDAR_STEP } from "../constants/calendarConstants";
+import { CALENDAR_STEP_SIZE } from "../constants/calendarConstants";
 
 /**
  * @returns true if the range [start1] - [end1] overlaps [start2] - [end2]
@@ -21,7 +21,7 @@ export const doDateRangesOverlap = (start1, end1, start2, end2) => {
  */
 export const getStepFromDate = (date) => {
   const totalMinutes = date.getHours() * 60 + date.getMinutes();
-  return Math.round(totalMinutes / CALENDAR_STEP);
+  return Math.ceil(totalMinutes / CALENDAR_STEP_SIZE);
 };
 
 /**
@@ -30,8 +30,8 @@ export const getStepFromDate = (date) => {
  */
 export const getDateWithStep = (date, step) => {
   const dateWithMarker = new Date(date);
-  dateWithMarker.setHours(Math.floor(step / (60 / CALENDAR_STEP)));
-  dateWithMarker.setMinutes((step % (60 / CALENDAR_STEP)) * CALENDAR_STEP);
+  dateWithMarker.setHours(Math.floor(step / (60 / CALENDAR_STEP_SIZE)));
+  dateWithMarker.setMinutes((step % (60 / CALENDAR_STEP_SIZE)) * CALENDAR_STEP_SIZE);
   dateWithMarker.setSeconds(0);
   dateWithMarker.setMilliseconds(0);
   return dateWithMarker;
@@ -67,8 +67,8 @@ export const getTimeStepOptions = (() => {
     const options = [];
     for (let i = 0; i < (24 * 60) / step; i++) {
       const date = new Date("December 17, 1995 00:00:00");
-      date.setHours(Math.floor(i / (60 / CALENDAR_STEP)));
-      date.setMinutes((i % (60 / CALENDAR_STEP)) * CALENDAR_STEP);
+      date.setHours(Math.floor(i / (60 / CALENDAR_STEP_SIZE)));
+      date.setMinutes((i % (60 / CALENDAR_STEP_SIZE)) * CALENDAR_STEP_SIZE);
       options.push({ label: formatTimeAMPM(date), value: i });
     }
 
