@@ -39,16 +39,35 @@ const COVCalendar = ({ history }) => {
 
   const onDateSelect = (date) => dispatch(selectCalendarDate(date));
 
-  const onWindowSelect = ({ start, end, resourceId }) => {
-    dispatch(selectCalendarWindow({ start, end, roomId: resourceId }));
-    // timeout is required so that a state update is not made on this component after it dismounts
+  const goToNewEventForm = () => {
+    // [setTimeout] is required so that we can dispatch right before navigating and
+    // not trigger a state update after the component dismounts
     setTimeout(() => history.push("/new"), 0);
+  };
+
+  const onWindowSelect = ({ start, end, resourceId }) => {
+    // put the selected window in the store so it can be accessed on the new event page
+    dispatch(selectCalendarWindow({ start, end, roomId: resourceId }));
+
+    goToNewEventForm();
+  };
+
+  const onNewEvent = () => {
+    // clear the window in the store and set the selected date to today so
+    // the new event form default to the next available time slot
+    dispatch(selectCalendarDate(new Date()));
+    dispatch(selectCalendarWindow(null));
+
+    goToNewEventForm();
   };
 
   return (
     <div className="flex flex-col h-screen px-16 py-8">
-      <div className="mb-2">
+      <div className="flex justify-between mb-2">
         <DatePicker selected={selectedDate} onChange={onDateSelect} />
+        <button onClick={onNewEvent} className="cov-btn">
+          New Event!
+        </button>
       </div>
       <div className="flex-1 min-h-0">
         <Calendar
