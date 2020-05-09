@@ -10956,7 +10956,8 @@ video {
   transition-duration: 1000ms;
 }
 
-.cov-btn {
+.cov-btn,
+.cov-select {
   color: #373a3c;
   display: inline-block;
   text-align: center;
@@ -10968,25 +10969,18 @@ video {
   border-radius: 4px;
   line-height: normal;
   white-space: nowrap;
-}
-
-.cov-btn:disabled {
-  background-color: #ccc;
-  color: #666;
+  cursor: pointer;
 }
 
 .cov-select {
-  color: #373a3c;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  background: none;
-  background-image: none;
-  border: 1px solid #ccc;
   height: 34px;
-  border-radius: 4px;
-  line-height: normal;
-  white-space: nowrap;
+}
+
+.cov-btn:disabled,
+.cov-select:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
 @media (min-width: 640px) {

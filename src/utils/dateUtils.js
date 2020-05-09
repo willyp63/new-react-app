@@ -1,4 +1,5 @@
 import { CALENDAR_STEP_SIZE } from "../constants/calendarConstants";
+import { MIDNIGHT } from "../constants/dateConstants";
 
 /**
  * @returns true if the range [start1] - [end1] overlaps [start2] - [end2]
@@ -31,7 +32,9 @@ export const getStepFromDate = (date) => {
 export const getDateWithStep = (date, step) => {
   const dateWithMarker = new Date(date);
   dateWithMarker.setHours(Math.floor(step / (60 / CALENDAR_STEP_SIZE)));
-  dateWithMarker.setMinutes((step % (60 / CALENDAR_STEP_SIZE)) * CALENDAR_STEP_SIZE);
+  dateWithMarker.setMinutes(
+    (step % (60 / CALENDAR_STEP_SIZE)) * CALENDAR_STEP_SIZE
+  );
   dateWithMarker.setSeconds(0);
   dateWithMarker.setMilliseconds(0);
   return dateWithMarker;
@@ -53,7 +56,7 @@ const formatTimeAMPM = (date) => {
 
 /**
  * @param {number} step the amount of minutes between time options
- * 
+ *
  * @returns an array of time step options
  */
 export const getTimeStepOptions = (() => {
@@ -66,7 +69,7 @@ export const getTimeStepOptions = (() => {
 
     const options = [];
     for (let i = 0; i < (24 * 60) / step; i++) {
-      const date = new Date("December 17, 1995 00:00:00");
+      const date = new Date(MIDNIGHT);
       date.setHours(Math.floor(i / (60 / CALENDAR_STEP_SIZE)));
       date.setMinutes((i % (60 / CALENDAR_STEP_SIZE)) * CALENDAR_STEP_SIZE);
       options.push({ label: formatTimeAMPM(date), value: i });
@@ -77,3 +80,11 @@ export const getTimeStepOptions = (() => {
   };
   return fn;
 })();
+
+/** @returns true if the date is at exactly midnight */
+export const isMidnight = (date) => {
+  return (
+    MIDNIGHT.getHours() === date.getHours() &&
+    MIDNIGHT.getMinutes() === date.getMinutes()
+  );
+};

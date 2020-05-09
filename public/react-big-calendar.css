@@ -205,6 +205,7 @@ button.rbc-input::-moz-focus-inner {
   color: #fff;
   width: 100%;
   text-align: left;
+  cursor: default;
 }
 .rbc-slot-selecting .rbc-event {
   cursor: inherit;
@@ -405,6 +406,7 @@ button.rbc-input::-moz-focus-inner {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  cursor: pointer;
 }
 .rbc-time-column .rbc-timeslot-group {
   flex: 1;

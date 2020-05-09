@@ -14,6 +14,7 @@ import {
   selectCalendarDate,
   selectCalendarWindow,
 } from "../store/actions/calendarActions";
+import { isMidnight } from "../utils/dateUtils";
 
 const localizer = momentLocalizer(moment);
 
@@ -72,7 +73,9 @@ const COVCalendar = ({ history }) => {
           // subtract one millisecond from the end date putting midnight dates at 11:59:999
           // this is to get around an issue were events ending at midnight are considered all-day events
           // and do not show up on the calendar
-          endAccessor={({ end }) => new Date(end.getTime() - 1)}
+          endAccessor={({ end }) =>
+            isMidnight(end) ? new Date(end.getTime() - 1) : end
+          }
         />
       </div>
     </div>
