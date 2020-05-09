@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import { Calendar, Views, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import { getCOVResourceHeader } from "./COVResourceHeader";
 import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from "react-redux";
-import { calendarSelector } from "../store/calendarReducer";
-import { fetchEvents, selectDate, setNewEvent } from "../store/calendarActions";
 import { CALENDAR_STEP } from "../constants/calendarConstants";
+import { eventsSelector } from "../store/reducers/eventsReducer";
+import { roomsSelector } from "../store/reducers/roomsReducer";
+import {
+  selectCalendarDate,
+  selectCalendarWindow,
+} from "../store/actions/calendarActions";
+import { calendarSelectedDateSelector } from "../store/reducers/calendarReducer";
 
 const localizer = momentLocalizer(moment);
 
@@ -22,83 +26,51 @@ const localizer = momentLocalizer(moment);
  */
 const COVCalendar = ({ history }) => {
   const dispatch = useDispatch();
-  const calendarData = useSelector(calendarSelector);
+  const events = useSelector(eventsSelector);
+  const rooms = useSelector(roomsSelector);
+  const selectedDate = useSelector(calendarSelectedDateSelector);
 
-  // fetch calendar data if it is not in the store
-  // TODO: duplicate code in COVEventForm.js
-  useEffect(() => {
-    if (!calendarData) {
-      dispatch(fetchEvents());
-    }
-  }, [calendarData, dispatch]);
-
-  if (!calendarData) {
+  if (!events || !rooms) {
     return null; // TODO: loading ui
   }
 
-  const setSelectedDate = (date) => dispatch(selectDate(date));
+  const onDateSelect = (date) => dispatch(selectCalendarDate(date));
 
-  const onSelectSlot = ({ start, end, resourceId }) => {
-    start.setSeconds(0);
-    end.setSeconds(0);
-    dispatch(setNewEvent({ start, end, roomId: resourceId }));
+  const onWindowSelect = ({ start, end, resourceId }) => {
+    dispatch(selectCalendarWindow({ start, end, roomId: resourceId }));
+    // timeout is required so that a state update is not made on this component after it dismounts
     setTimeout(() => history.push("/new"), 0);
   };
 
   return (
     <div className="flex flex-col h-screen px-16 py-8">
       <div className="mb-2">
-        <DatePicker
-          selected={calendarData.selectedDate}
-          onChange={setSelectedDate}
-        />
+        <DatePicker selected={selectedDate} onChange={onDateSelect} />
       </div>
       <div className="flex-1 min-h-0">
         <Calendar
           selectable
           localizer={localizer}
-          events={calendarData.events}
-          resources={calendarData.rooms}
+          events={events}
+          resources={Object.values(rooms)}
           resourceAccessor="roomId"
           resourceIdAccessor="id"
-          onSelectSlot={onSelectSlot}
+          onSelectSlot={onWindowSelect}
           // this causes the room's id to be passed to the resource header component instead of its name
           resourceTitleAccessor="id"
           views={["day"]}
           defaultView={Views.DAY}
           step={CALENDAR_STEP}
-          date={calendarData.selectedDate}
-          onNavigate={setSelectedDate}
+          date={selectedDate}
+          onNavigate={onDateSelect}
           // render a custom resource header with the room's name and image
           components={{
-            resourceHeader: getCOVResourceHeader(calendarData.roomsMap),
+            resourceHeader: getCOVResourceHeader(rooms),
           }}
         />
       </div>
     </div>
   );
-};
-
-const eventType = PropTypes.shape({
-  id: PropTypes.string,
-  start: PropTypes.instanceOf(Date),
-  end: PropTypes.instanceOf(Date),
-  roomId: PropTypes.string,
-});
-
-const roomType = PropTypes.shape({
-  id: PropTypes.string,
-  name: PropTypes.string,
-  imageUrl: PropTypes.string,
-});
-
-COVCalendar.propTypes = {
-  /** The list of events to show on the calendar */
-  events: PropTypes.arrayOf(eventType),
-  /** All of the rooms with events */
-  rooms: PropTypes.arrayOf(roomType),
-  /** A map of room id to room */
-  roomsMap: PropTypes.objectOf(roomType),
 };
 
 export default withRouter(COVCalendar);

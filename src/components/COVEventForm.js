@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import COVSelect from "./COVSelect";
 import { Link, withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { calendarSelector } from "../store/calendarReducer";
-import { fetchEvents, addEvent } from "../store/calendarActions";
+import { addEvent } from "../store/actions/eventActions";
 import {
   getStepAfterDate,
   getDateWithStep,
@@ -17,58 +16,51 @@ import {
   CALENDAR_DEFAULT_EVENT_LENGTH,
   CALENDAR_DEFAULT_EVENT_START,
 } from "../constants/calendarConstants";
+import {
+  calendarSelectedWindowSelector,
+  calendarSelectedDateSelector,
+} from "../store/reducers/calendarReducer";
+import { eventsSelector } from "../store/reducers/eventsReducer";
+import { roomsSelector } from "../store/reducers/roomsReducer";
 
 const COVEventForm = ({ history }) => {
   const dispatch = useDispatch();
-  const calendarData = useSelector(calendarSelector);
+  const events = useSelector(eventsSelector);
+  const rooms = useSelector(roomsSelector);
+  const selectedDate = useSelector(calendarSelectedDateSelector);
+  const selectedWindow = useSelector(calendarSelectedWindowSelector);
 
   // form state
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState(selectedDate || new Date());
   const [start, setStart] = useState(
-    calendarData && calendarData.newEvent
-      ? getStepAfterDate(calendarData.newEvent.start)
+    selectedWindow
+      ? getStepAfterDate(selectedWindow.start)
       : CALENDAR_DEFAULT_EVENT_START
   );
   const [end, setEnd] = useState(
-    calendarData && calendarData.newEvent
-      ? getStepAfterDate(calendarData.newEvent.end)
+    selectedWindow
+      ? getStepAfterDate(selectedWindow.end)
       : CALENDAR_DEFAULT_EVENT_START + CALENDAR_DEFAULT_EVENT_LENGTH
   );
   const [roomId, setRoomId] = useState(
-    calendarData && calendarData.newEvent ? calendarData.newEvent.roomId : null
+    selectedWindow ? selectedWindow.roomId : null
   );
   const [errors, setErrors] = useState([]);
 
-  // fetch calendar data if it is not in the store
-  // TODO: duplicate code in COVCalendar.js
+  // validate form whenever a field changes
   useEffect(() => {
-    if (!calendarData) {
-      dispatch(fetchEvents());
-    } else {
-      // once calendar data is loaded, set the selected roomId to the first room
-      // and the date to the selected date
-      if (!roomId) {
-        setRoomId(calendarData.rooms[0].id);
-      }
-      setDate(calendarData.selectedDate);
-    }
-  }, [calendarData, dispatch, roomId]);
-
-  useEffect(() => {
-    if (!calendarData || !date) {
-      return;
-    }
-
     const errors = [];
     const startDate = getDateWithStep(date, start);
     const endDate = getDateWithStep(date, end);
 
+    // make sure [end] comes after [start]
     if (start > end) {
       errors.push("End Time must be greater than Start Time");
     }
 
-    for (let i = 0; i < calendarData.events.length; i++) {
-      const event = calendarData.events[i];
+    // make sure event doesnt overlap with an existing event
+    for (let i = 0; i < events ? events.length : 0; i++) {
+      const event = events[i];
 
       // if the event is on another day or in another room, ignore it
       if (
@@ -86,15 +78,12 @@ const COVEventForm = ({ history }) => {
     }
 
     setErrors(errors);
-  }, [date, start, end, roomId, calendarData]);
-
-  if (!calendarData) {
-    return null; // TODO: loading ui
-  }
+  }, [events, date, start, end, roomId]);
 
   const onSubmit = (e) => {
-    // add the event to the store and navigate back to calendar view
     e.preventDefault();
+
+    // add the event to the store and navigate back to calendar view
     dispatch(
       addEvent({
         id: randomId(),
@@ -144,10 +133,14 @@ const COVEventForm = ({ history }) => {
             id="room"
             value={roomId || ""}
             onChange={({ target: { value: roomId } }) => setRoomId(roomId)}
-            options={calendarData.rooms.map(({ name, id }) => ({
-              value: id,
-              label: name,
-            }))}
+            options={
+              rooms
+                ? Object.values(rooms).map(({ name, id }) => ({
+                    value: id,
+                    label: name,
+                  }))
+                : []
+            }
           />
         </div>
         <div className="flex justify-end">
