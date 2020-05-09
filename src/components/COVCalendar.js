@@ -63,6 +63,7 @@ const COVCalendar = ({ history }) => {
 
   return (
     <div className="flex flex-col h-screen px-16 py-8">
+      <div className="mb-4 text-lg">**Click and drag on the calendar to create a new event</div>
       <div className="flex justify-between mb-2">
         <DatePicker selected={selectedDate} onChange={onDateSelect} />
         <button onClick={onNewEvent} className="cov-btn">
