@@ -33,7 +33,7 @@ const COVCalendar = ({ history }) => {
   const selectedDate = useSelector(calendarSelectedDateSelector);
 
   if (!events || !rooms) {
-    return null; // TODO: loading ui
+    return null;
   }
 
   const onDateSelect = (date) => dispatch(selectCalendarDate(date));
