@@ -1,12 +1,14 @@
 import React from "react";
 
 /**
+ * A Factory for react-big-calendar custom header components
+ * 
+ * react-big-calendar passes the header a label that we have set to be the room's id.
+ * We can then get the full room object by looking it up in [rooms].
+ * 
  * @param {Object} rooms map of room id to room
  *
  * @returns a react-big-calendar custom resource header
- *
- * react-big-calendar passes the resource header a label that we have set to be the room's id.
- * We can then get the full room object by looking it up in [rooms].
  */
 export const getCOVResourceHeader = (rooms) => ({ label: roomId }) => {
   const room = rooms[roomId];

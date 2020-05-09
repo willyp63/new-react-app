@@ -1,5 +1,8 @@
 import { CALENDAR_STEP } from "../constants/calendarConstants";
 
+/**
+ * @returns true if the range [start1] - [end1] overlaps [start2] - [end2]
+ */
 export const doDateRangesOverlap = (start1, end1, start2, end2) => {
   if (start1 > start2 && start1 < end2) {
     return true;
@@ -13,11 +16,18 @@ export const doDateRangesOverlap = (start1, end1, start2, end2) => {
   return false;
 };
 
-export const getStepAfterDate = (date) => {
+/**
+ * @returns the calendar step closest to [date]
+ */
+export const getStepFromDate = (date) => {
   const totalMinutes = date.getHours() * 60 + date.getMinutes();
-  return Math.ceil(totalMinutes / CALENDAR_STEP);
+  return Math.round(totalMinutes / CALENDAR_STEP);
 };
 
+/**
+ * @returns a new date with the year/month/day from [date] and
+ * the hours/minutes/seconds/milliseconds from [step]
+ */
 export const getDateWithStep = (date, step) => {
   const dateWithMarker = new Date(date);
   dateWithMarker.setHours(Math.floor(step / (60 / CALENDAR_STEP)));
@@ -27,6 +37,9 @@ export const getDateWithStep = (date, step) => {
   return dateWithMarker;
 };
 
+/**
+ * @returns the time string version of [date] in am/pm format (example: `12:30 am`)
+ */
 const formatTimeAMPM = (date) => {
   var hours = date.getHours();
   var minutes = date.getMinutes();
@@ -38,7 +51,13 @@ const formatTimeAMPM = (date) => {
   return strTime;
 };
 
+/**
+ * @param {number} step the amount of minutes between time options
+ * 
+ * @returns an array of time step options
+ */
 export const getTimeStepOptions = (() => {
+  // memoize results
   const cache = {};
   const fn = (step) => {
     if (cache[step]) {

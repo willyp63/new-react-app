@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import COVSelect from "./COVSelect";
 import { Link, withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addEvent } from "../store/actions/eventActions";
+import ReactDatePicker from "react-datepicker";
+
+import COVSelect from "./COVSelect";
 import {
-  getStepAfterDate,
+  getStepFromDate,
   getDateWithStep,
   doDateRangesOverlap,
   getTimeStepOptions,
 } from "../utils/dateUtils";
 import { randomId } from "../utils/idUtils";
-import ReactDatePicker from "react-datepicker";
 import {
   CALENDAR_STEP,
   CALENDAR_DEFAULT_EVENT_LENGTH,
@@ -22,9 +22,14 @@ import {
 } from "../store/reducers/calendarReducer";
 import { eventsSelector } from "../store/reducers/eventsReducer";
 import { roomsSelector } from "../store/reducers/roomsReducer";
+import { addEvent } from "../store/actions/eventActions";
 
+/**
+ * Form for adding a new event to the calendar
+ */
 const COVEventForm = ({ history }) => {
   const dispatch = useDispatch();
+
   const events = useSelector(eventsSelector);
   const rooms = useSelector(roomsSelector);
   const selectedDate = useSelector(calendarSelectedDateSelector);
@@ -34,12 +39,12 @@ const COVEventForm = ({ history }) => {
   const [date, setDate] = useState(selectedDate || new Date());
   const [start, setStart] = useState(
     selectedWindow
-      ? getStepAfterDate(selectedWindow.start)
+      ? getStepFromDate(selectedWindow.start)
       : CALENDAR_DEFAULT_EVENT_START
   );
   const [end, setEnd] = useState(
     selectedWindow
-      ? getStepAfterDate(selectedWindow.end)
+      ? getStepFromDate(selectedWindow.end)
       : CALENDAR_DEFAULT_EVENT_START + CALENDAR_DEFAULT_EVENT_LENGTH
   );
   const [roomId, setRoomId] = useState(
@@ -47,9 +52,17 @@ const COVEventForm = ({ history }) => {
   );
   const [errors, setErrors] = useState([]);
 
+  // if there was not a selected window, set the room id to the first room's id
+  useEffect(() => {
+    if (rooms && !roomId) {
+      setRoomId(Object.values(rooms)[0].id);
+    }
+  }, [rooms, roomId]);
+
   // validate form whenever a field changes
   useEffect(() => {
     const errors = [];
+
     const startDate = getDateWithStep(date, start);
     const endDate = getDateWithStep(date, end);
 
@@ -58,8 +71,8 @@ const COVEventForm = ({ history }) => {
       errors.push("End Time must be greater than Start Time");
     }
 
-    // make sure event doesnt overlap with an existing event
-    for (let i = 0; i < events ? events.length : 0; i++) {
+    // make sure new event doesnt overlap with an existing event
+    for (let i = 0; i < (events ? events.length : 0); i++) {
       const event = events[i];
 
       // if the event is on another day or in another room, ignore it

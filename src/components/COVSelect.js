@@ -1,11 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 /**
- * @param {string} label label for the input
- * @param {string} id id for the input
- * @param {Date} value the selected value
- * @param {Function} onChange called whenever the user selects a new time
- * @param {Array} options an array of options, each with a value and label key
+ * A custom select component with label
  */
 const COVSelect = ({ label, id, value, onChange, options }) => {
   return (
@@ -25,6 +22,21 @@ const COVSelect = ({ label, id, value, onChange, options }) => {
       </select>
     </div>
   );
+};
+
+COVSelect.propTypes = {
+  /** label for the input */
+  label: PropTypes.string,
+  /** id for the input */
+  id: PropTypes.string,
+  /** the selected value */
+  value: PropTypes.any,
+  /** called whenever the user selects a new time */
+  onChange: PropTypes.func,
+  /** an array of options, each with a value and label key */
+  options: PropTypes.arrayOf(
+    PropTypes.shape({ value: PropTypes.any, label: PropTypes.string })
+  ),
 };
 
 export default COVSelect;
