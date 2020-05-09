@@ -15,6 +15,7 @@ import ReactDatePicker from "react-datepicker";
 import {
   CALENDAR_STEP,
   CALENDAR_DEFAULT_EVENT_LENGTH,
+  CALENDAR_DEFAULT_EVENT_START,
 } from "../constants/calendarConstants";
 
 const COVEventForm = ({ history }) => {
@@ -22,12 +23,20 @@ const COVEventForm = ({ history }) => {
   const calendarData = useSelector(calendarSelector);
 
   // form state
-  const [date, setDate] = useState(new Date());
-  const [start, setStart] = useState(getStepAfterDate(new Date()));
-  const [end, setEnd] = useState(
-    getStepAfterDate(new Date()) + CALENDAR_DEFAULT_EVENT_LENGTH
+  const [date, setDate] = useState(null);
+  const [start, setStart] = useState(
+    calendarData && calendarData.newEvent
+      ? getStepAfterDate(calendarData.newEvent.start)
+      : CALENDAR_DEFAULT_EVENT_START
   );
-  const [roomId, setRoomId] = useState(null);
+  const [end, setEnd] = useState(
+    calendarData && calendarData.newEvent
+      ? getStepAfterDate(calendarData.newEvent.end)
+      : CALENDAR_DEFAULT_EVENT_START + CALENDAR_DEFAULT_EVENT_LENGTH
+  );
+  const [roomId, setRoomId] = useState(
+    calendarData && calendarData.newEvent ? calendarData.newEvent.roomId : null
+  );
   const [errors, setErrors] = useState([]);
 
   // fetch calendar data if it is not in the store
@@ -37,12 +46,16 @@ const COVEventForm = ({ history }) => {
       dispatch(fetchEvents());
     } else {
       // once calendar data is loaded, set the selected roomId to the first room
-      setRoomId(calendarData.rooms[0].id);
+      // and the date to the selected date
+      if (!roomId) {
+        setRoomId(calendarData.rooms[0].id);
+      }
+      setDate(calendarData.selectedDate);
     }
-  }, [calendarData, dispatch]);
+  }, [calendarData, dispatch, roomId]);
 
   useEffect(() => {
-    if (!calendarData) {
+    if (!calendarData || !date) {
       return;
     }
 

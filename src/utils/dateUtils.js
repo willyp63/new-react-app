@@ -1,10 +1,10 @@
 import { CALENDAR_STEP } from "../constants/calendarConstants";
 
 export const doDateRangesOverlap = (start1, end1, start2, end2) => {
-  if (start1 >= start2 && start1 <= end2) {
+  if (start1 > start2 && start1 < end2) {
     return true;
   }
-  if (end1 >= start2 && end1 <= end2) {
+  if (end1 > start2 && end1 < end2) {
     return true;
   }
   if (start1 <= start2 && end1 >= end2) {
@@ -22,6 +22,8 @@ export const getDateWithStep = (date, step) => {
   const dateWithMarker = new Date(date);
   dateWithMarker.setHours(Math.floor(step / (60 / CALENDAR_STEP)));
   dateWithMarker.setMinutes((step % (60 / CALENDAR_STEP)) * CALENDAR_STEP);
+  dateWithMarker.setSeconds(0);
+  dateWithMarker.setMilliseconds(0);
   return dateWithMarker;
 };
 

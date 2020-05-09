@@ -34,3 +34,19 @@ export const addEvent = (event) => {
     event,
   };
 };
+
+export const SELECT_DATE = "SELECT_DATE";
+export const selectDate = (date) => {
+  return {
+    type: SELECT_DATE,
+    date,
+  };
+};
+
+export const SET_NEW_EVENT = "SET_NEW_EVENT";
+export const setNewEvent = (event) => {
+  return {
+    type: SET_NEW_EVENT,
+    event,
+  };
+};

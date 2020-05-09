@@ -7,9 +7,14 @@
 export const CALENDAR_STEP = 15;
 
 /**
- * The default length for a new event in [CALENDAR_STEP]s.
+ * The default start time for a new event in [CALENDAR_STEP]s starting at 12:00am.
  *
- * So if [CALENDAR_STEP] is 15 and [CALENDAR_DEFAULT_EVENT_LENGTH] is 4,
- * then events will have a default length of 1 hour.
+ * So if [CALENDAR_STEP] is 30 and [CALENDAR_DEFAULT_EVENT_START] is 10,
+ * then events will default to starting at 5:00am.
  */
-export const CALENDAR_DEFAULT_EVENT_LENGTH = 4;
+export const CALENDAR_DEFAULT_EVENT_START = 48; // noon
+
+/**
+ * The default length for a new event in [CALENDAR_STEP]s.
+ */
+export const CALENDAR_DEFAULT_EVENT_LENGTH = 4; // 1 hour
