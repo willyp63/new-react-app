@@ -82,15 +82,21 @@ module.exports = {
         900: "#234e52"
       },
       blue: {
-        100: "#ebf8ff",
-        200: "#bee3f8",
-        300: "#90cdf4",
-        400: "#63b3ed",
-        500: "#4299e1",
-        600: "#3182ce",
-        700: "#2b6cb0",
-        800: "#2c5282",
-        900: "#2a4365"
+        100: "#c5c1eb",
+        200: "#b1ace5",
+        300: "#9e97de",
+        400: "#8b82d7",
+        500: "#776dd1",
+        600: "#6459ca",
+        700: "#5044c4",
+        800: "#3d2fbd",
+        900: "#372aaa",
+        1000: "#312697",
+        1100: "#2b2184",
+        1200: "#251c71",
+        1300: "#1f185f",
+        1400: "#18134c",
+        1500: "#120e39"
       },
       indigo: {
         100: "#ebf4ff",
@@ -145,7 +151,12 @@ module.exports = {
       "40": "10rem",
       "48": "12rem",
       "56": "14rem",
-      "64": "16rem"
+      "64": "16rem",
+      "80": "20rem",
+      "88": "22rem",
+      "96": "24rem",
+      "128": "32rem",
+      "160": "40rem",
     },
     backgroundColor: theme => theme("colors"),
     backgroundPosition: {
@@ -179,6 +190,7 @@ module.exports = {
     borderWidth: {
       default: "1px",
       "0": "0",
+      "1": "1px",
       "2": "2px",
       "4": "4px",
       "8": "8px"
@@ -314,6 +326,10 @@ module.exports = {
       "4xl": "56rem",
       "5xl": "64rem",
       "6xl": "72rem",
+      "7xl": "80rem",
+      "8xl": "88rem",
+      "9xl": "96rem",
+      "10xl": "104rem",
       full: "100%",
       ...breakpoints(theme("screens"))
     }),

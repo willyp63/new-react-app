@@ -1,29 +1,2 @@
 @tailwind base;
 @tailwind utilities;
-
-.cov-btn,
-.cov-select {
-  color: #373a3c;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  background: none;
-  background-image: none;
-  border: 1px solid #ccc;
-  padding: 0.375rem 1rem;
-  border-radius: 4px;
-  line-height: normal;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.cov-select {
-  height: 34px;
-}
-
-.cov-btn:disabled,
-.cov-select:disabled {
-  background-color: #ccc;
-  color: #666;
-  cursor: not-allowed;
-}
