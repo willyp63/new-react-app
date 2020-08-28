@@ -7,7 +7,7 @@ module.exports = {
     ...(process.env.NODE_ENV === "production"
       ? [
           purgecss({
-            content: ["./src/**/*.js", "./public/index.html"],
+            content: ["./src/**/*.jsx", "./public/index.html"],
             defaultExtractor: content => content.match(/[A-Za-z0-9-_://]+/g) || []
           }),
           require("cssnano")({
