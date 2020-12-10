@@ -67,25 +67,20 @@ const Home = () => {
         className="w-full bg-cover bg-right flex justify-center p-12 md:p-16 lg:p-20"
         style={{ backgroundImage: "url(imgs/obey-1.jpg)" }}
       >
-        <div className="max-w-9xl flex-1 flex items-center justify-center md:justify-start">
+        <div className="max-w-9xl flex-1 flex items-center justify-center md:justify-start py-24">
           <div className="max-w-lg relative">
             <div className="bg-white py-6 px-10 md:py-8 md:px-12 rounded-sm flex flex-col relative z-10">
               <h2 className="text-2xl md:text-3xl font-bold leading-tight">
-                An original twist on female domination.
+                Beta Therapy
               </h2>
               <p className="mt-4 text-lg md:text-xl font-light">
-                Offering ‘therapy’ to addicts, mind fucking you further down
-                that rabbit hole. Helping you Whilst I help myself.
-              </p>
-              <p className="mt-4 text-lg md:text-xl font-light">
-                A latex loving, pro domme. A Humiliatrix Specialising in JOI,
-                FANTASY blackmail, Force intox and home wrecking.
+                Of course, you are beta looking for answers. Frustrated and confused, I have some guidance for you.
               </p>
               <a
                 className="bg-blue-500 px-12 py-4 md:px-16 md:py-6 text-white text-md md:text-lg rounded-sm self-end mt-8 font-semibold transition-all duration-200 transform hover:scale-105 hover:bg-blue-400"
-                href="https://www.sextpanther.com/Blu-Dahlia"
+                href="https://iwantclips.com/store/item/2232780"
               >
-                TEXT OR CALL
+                Learn More
               </a>
             </div>
             <div
@@ -190,43 +185,25 @@ const Home = () => {
 
       {/* Block #3 */}
       <div className="p-8 md:12 lg:p-16 flex justify-center">
-        <div className="max-w-9xl flex flex-col md:flex-row items-center md:items-start">
-          <div className="md:mr-24 lg:mr-32 mb-8 md:mb-0">
+        <div className="max-w-9xl flex flex-col lg:flex-row items-center lg:items-start">
+          <div className="lg:mr-24 lg:mr-32 mb-8 lg:mb-0">
             <h2 className="text-2xl md:text-3xl lg:text-4xl mb-4">
-              IN NEED OF THERAPY?
+              Goon for your Goddess
             </h2>
-            <p className="text-lg md:text-xl font-light">
-              Are you tired of feeling victimised, embarrassed, guilty and most
-              of all broke? or is that your kink!
-              <br />
-              This behaviour of domination can be perfectly healthy or
-              significantly problematic depending on how it makes you feel and
-              how it impacts your life (and your relationships). For example,
-              hiding your activity from your boring vanilla wife takes a toll on
-              your relationship.
+            <p className="text-lg md:text-xl font-light">         
+              Goon on, My gooning bitch. In My presence, your mind turns to mush, your jaw drops and your drool - you are My gooning plaything. It's so fun fucking with your mind when you don't even know what's happening!
               <br />
               <br />
-              Or perhaps you fit into the lonely virgin bracket of submissive? I
-              imagine many of you derive a thrill from the taboo of tipping to a
-              Superior you will never get the chance of touching.
+              Okay, I get it. I want you to be a fulltime cock slut, but you are stalling. Here are some things to do in the meantime, ways to get your mind prepped for when the day really comes (and it will come), so you completely ready to embrace the cock!
               <br />
               <br />
-              However, if it pleasures you hiding your activity from your
-              partner with whom you have agreed to share finances, this could be
-              quite problematic! I’ve solved that issue by making sure all tips
-              are kept anonymous and will not show up suspiciously on your
-              statement.
-              <br />
-              <br />
-              Most people crave a balance of security/predictability and
-              excitement/the unknown. Sacrificing all to please the doctor is
-              all the therapy you would ever need.
+              I want you absolutely suffering for Me. Worshipping Me by going further and really fucking your mind up. I want you absolutely desperate and woozy with desire. That's why you are going to binge porn for Me until you are so delirious with arousal... only then, you will realize binge has begun!
             </p>
           </div>
           <div className="m-8 relative">
             <div
               style={{ backgroundImage: "url(imgs/obey-4.jpg)" }}
-              className="w-48 h-96 md:w-64 md:h-128 lg:w-96 lg:h-160 bg-cover bg-center relative z-10"
+              className="w-48 h-96 lg:w-80 lg:h-128 bg-cover bg-center relative z-10"
             />
             <div
               className="bg-blue-1300 w-40 h-40 absolute"
