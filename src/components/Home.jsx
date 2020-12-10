@@ -6,8 +6,7 @@ import {
   FaUserFriends,
   FaTwitter,
   FaInstagram,
-  FaTwitch,
-  FaFacebook,
+  FaReddit,
 } from "react-icons/fa";
 
 const Home = () => {
@@ -16,7 +15,7 @@ const Home = () => {
       {/* Banner Img */}
       <div
         className="w-full h-128 bg-cover bg-top flex justify-center relative"
-        style={{ backgroundImage: "url(imgs/obey-blue-7.jpg)" }}
+        style={{ backgroundImage: "url(imgs/obey-2.jpg)" }}
       >
         <div className="w-full max-w-9xl relative m-12 md:m-16 lg:m-20">
           <div className="absolute top-0 left-0">
@@ -43,36 +42,30 @@ const Home = () => {
         >
           HOME
         </Link>
-        <Link
-          to="/clips"
+        <a
+          href="https://iwantclips.com/store/823228/Obey-Blu-Dahlia/"
           className="py-2 md:px-4 lg:px-6 transition-all duration-200 transform hover:scale-105 hover:text-gray-300"
         >
           CLIPS
-        </Link>
-        <Link
-          to="/fanclub"
+        </a>
+        <a
+          href="https://stars.avn.com/BluDahlia"
           className="py-2 md:px-4 lg:px-6 transition-all duration-200 transform hover:scale-105 hover:text-gray-300"
         >
           FANCLUB
-        </Link>
-        <Link
-          to="/text"
+        </a>
+        <a
+          href="https://www.sextpanther.com/Blu-Dahlia"
           className="py-2 md:px-4 lg:px-6 transition-all duration-200 transform hover:scale-105 hover:text-gray-300"
         >
           TEXT/CALL
-        </Link>
-        <Link
-          to="/blog"
-          className="py-2 md:px-4 lg:px-6 transition-all duration-200 transform hover:scale-105 hover:text-gray-300"
-        >
-          BLOG
-        </Link>
+        </a>
       </nav>
 
       {/* Block #1 */}
       <div
         className="w-full bg-cover bg-right flex justify-center p-12 md:p-16 lg:p-20"
-        style={{ backgroundImage: "url(imgs/obey-blue-6.jpg)" }}
+        style={{ backgroundImage: "url(imgs/obey-1.jpg)" }}
       >
         <div className="max-w-9xl flex-1 flex items-center justify-center md:justify-start">
           <div className="max-w-lg relative">
@@ -90,7 +83,7 @@ const Home = () => {
               </p>
               <a
                 className="bg-blue-500 px-12 py-4 md:px-16 md:py-6 text-white text-md md:text-lg rounded-sm self-end mt-8 font-semibold transition-all duration-200 transform hover:scale-105 hover:bg-blue-400"
-                href="www.google.com"
+                href="https://www.sextpanther.com/Blu-Dahlia"
               >
                 TEXT OR CALL
               </a>
@@ -110,11 +103,11 @@ const Home = () => {
       {/* Block #2 */}
       <div
         className="bg-blue-1300 w-full bg-cover bg-left flex justify-center p-8 md:12 lg:p-16"
-        style={{ backgroundImage: "url(imgs/obey-blue-8.jpg)" }}
+        style={{ backgroundImage: "url(imgs/obey-3.jpg)" }}
       >
         <div className="flex justify-center md:justify-end flex-1 max-w-9xl">
           <div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl text-blue-300 mb-8">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl text-blue-300 mb-12">
               OFFERS & SERVICES
             </h2>
             <div
@@ -125,74 +118,77 @@ const Home = () => {
                 className="w-1/2 md:w-1/3"
                 style={{ paddingRight: 24, paddingBottom: 24 }}
               >
-                <button className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
+                <a href="https://www.sextpanther.com/Blu-Dahlia" className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
                   <FaPhone size={48} color="#776dd1" />
                   <p className="mt-4 text-lg md:text-xl font-semibold text-center">
                     Text or Call
                   </p>
-                </button>
+                </a>
               </div>
               <div
                 className="w-1/2 md:w-1/3"
                 style={{ paddingRight: 24, paddingBottom: 24 }}
               >
-                <button className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
+                <a href="https://iwantclips.com/store/823228/Obey-Blu-Dahlia/" className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
                   <FaPhotoVideo size={48} color="#776dd1" />
                   <p className="mt-4 text-lg md:text-xl font-semibold text-center">
                     Photos and Videos
                   </p>
-                </button>
+                </a>
               </div>
               <div
                 className="w-1/2 md:w-1/3"
                 style={{ paddingRight: 24, paddingBottom: 24 }}
               >
-                <button className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
+                <a href="https://stars.avn.com/BluDahlia" className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
                   <FaUserFriends size={48} color="#776dd1" />
                   <p className="mt-4 text-lg md:text-xl font-semibold text-center">
+                    Join the
+                  </p>
+                  <p className="text-lg md:text-xl font-semibold text-center">
                     Fan Club
                   </p>
-                </button>
+                </a>
               </div>
               <div
                 className="w-1/2 md:w-1/3"
                 style={{ paddingRight: 24, paddingBottom: 24 }}
               >
-                <button className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
-                  <FaPhotoVideo size={48} color="#776dd1" />
+                <a href="https://twitter.com/ObeyBluDahlia" className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
+                  <FaTwitter size={48} color="#776dd1" />
                   <p className="mt-4 text-lg md:text-xl font-semibold text-center">
-                    Photos and Videos
+                    Follow on Twitter
                   </p>
-                </button>
+                </a>
               </div>
               <div
                 className="w-1/2 md:w-1/3"
                 style={{ paddingRight: 24, paddingBottom: 24 }}
               >
-                <button className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
-                  <FaPhotoVideo size={48} color="#776dd1" />
+                <a href="https://www.instagram.com/obeybludahlia/?hl=en" className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
+                  <FaInstagram size={48} color="#776dd1" />
                   <p className="mt-4 text-lg md:text-xl font-semibold text-center">
-                    Photos and Videos
+                    Follow on Instagram
                   </p>
-                </button>
+                </a>
               </div>
               <div
                 className="w-1/2 md:w-1/3"
                 style={{ paddingRight: 24, paddingBottom: 24 }}
               >
-                <button className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
-                  <FaPhotoVideo size={48} color="#776dd1" />
+                <a href="https://www.reddit.com/user/obeybludahlia/" className="bg-white rounded-sm p-4 md:p-8 w-full h-full flex flex-col items-center transform transition-all duration-200 hover:scale-105 hover:bg-gray-200">
+                  <FaReddit size={48} color="#776dd1" />
                   <p className="mt-4 text-lg md:text-xl font-semibold text-center">
-                    Photos and Videos
+                    Follow on Reddit
                   </p>
-                </button>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Block #2 */}
+      {/* Block #3 */}
       <div className="p-8 md:12 lg:p-16 flex justify-center">
         <div className="max-w-9xl flex flex-col md:flex-row items-center md:items-start">
           <div className="md:mr-24 lg:mr-32 mb-8 md:mb-0">
@@ -229,7 +225,7 @@ const Home = () => {
           </div>
           <div className="m-8 relative">
             <div
-              style={{ backgroundImage: "url(imgs/obey-blue-1.jpg)" }}
+              style={{ backgroundImage: "url(imgs/obey-4.jpg)" }}
               className="w-48 h-96 md:w-64 md:h-128 lg:w-96 lg:h-160 bg-cover bg-center relative z-10"
             />
             <div
@@ -250,76 +246,70 @@ const Home = () => {
           <div className="flex mb-4">
             <div className="flex-1 flex flex-col">
               <a
-                href="www.google.com"
+                href="https://www.sextpanther.com/Blu-Dahlia"
                 className="text-sm md:text-base font-semibold mb-3 transition-all duration-200 hover:text-gray-300 hover:underline"
               >
-                Blog
+                Text or Call
               </a>
               <a
-                href="www.google.com"
-                className="text-sm md:text-base font-semibold mb-3 transition-all duration-200 hover:text-gray-300 hover:underline"
-              >
-                Stories
-              </a>
-              <a
-                href="www.google.com"
+                href="https://iwantclips.com/store/823228/Obey-Blu-Dahlia/"
                 className="text-sm md:text-base font-semibold mb-3 transition-all duration-200 hover:text-gray-300 hover:underline"
               >
                 Photos and Videos
               </a>
               <a
-                href="www.google.com"
+                href="https://stars.avn.com/BluDahlia"
                 className="text-sm md:text-base font-semibold mb-3 transition-all duration-200 hover:text-gray-300 hover:underline"
               >
-                Other Services
+                Fan Club
+              </a>
+              <a
+                href="/"
+                className="text-sm md:text-base font-semibold mb-3 transition-all duration-200 hover:text-gray-300 hover:underline"
+              >
+                Blog
               </a>
             </div>
             <div className="flex-1 flex flex-col justify-between">
               <div className="flex flex-col">
                 <a
-                  href="www.google.com"
+                  href="\"
                   className="text-sm md:text-base font-semibold mb-3 transition-all duration-200 hover:text-gray-300 hover:underline"
                 >
                   Donations
                 </a>
                 <a
-                  href="www.google.com"
+                  href="\"
                   className="text-sm md:text-base font-semibold mb-3 transition-all duration-200 hover:text-gray-300 hover:underline"
                 >
-                  Text or Call
+                  Other Services
                 </a>
               </div>
               <div className="flex my-3">
                 <a
-                  href="www.google.com"
-                  className="mr-2 transform transition-all duration-200 hover:scale-110"
-                >
-                  <FaTwitter size={24} />
-                </a>
-                <a
-                  href="www.google.com"
+                  href="https://www.instagram.com/obeybludahlia/?hl=en"
                   className="mr-2 transform transition-all duration-200 hover:scale-110"
                 >
                   <FaInstagram size={24} />
                 </a>
                 <a
-                  href="www.google.com"
+                  href="https://twitter.com/ObeyBluDahlia"
                   className="mr-2 transform transition-all duration-200 hover:scale-110"
                 >
-                  <FaTwitch size={24} />
+                  <FaTwitter size={24} />
                 </a>
                 <a
-                  href="www.google.com"
+                  href="https://www.reddit.com/user/obeybludahlia/"
                   className="mr-2 transform transition-all duration-200 hover:scale-110"
                 >
-                  <FaFacebook size={24} />
+                  <FaReddit size={24} />
                 </a>
               </div>
             </div>
           </div>
           <div className="flex flex-col items-center border-t-1 border-white pt-8">
             <p className="text-sm md:text-base text-center">
-              2020 © obeyblue.com - All Rights Reserved.
+              2020 © obey-blue.herokuapp.com - All Rights Reserved.
             </p>
             <p className="text-sm md:text-base font-semibold text-center mt-2">
               powered by Foxxie
