@@ -29,7 +29,7 @@ const Home = () => {
         </div>
         <img
           src="/imgs/obey-logo.png"
-          alt="obey blue"
+          alt="obey blu"
           className="absolute bottom-0 right-0 mr-4 mb-4 h-10"
         />
       </div>
