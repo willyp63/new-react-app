@@ -20,7 +20,7 @@ const Home = () => {
         <div className="w-full max-w-9xl relative m-12 md:m-16 lg:m-20">
           <div className="absolute top-0 left-0">
             <h1 className="text-blue-300 font-semibold italic text-5xl lg:text-6xl">
-              OBEY BLUE
+              OBEY BLU
             </h1>
             <h2 className="text-white text-2xl lg:text-3xl italic">
               Salvation Through Financial Sacrifice
@@ -28,7 +28,7 @@ const Home = () => {
           </div>
         </div>
         <img
-          src="/imgs/obey-blue-logo.png"
+          src="/imgs/obey-logo.png"
           alt="obey blue"
           className="absolute bottom-0 right-0 mr-4 mb-4 h-10"
         />
@@ -309,7 +309,7 @@ const Home = () => {
           </div>
           <div className="flex flex-col items-center border-t-1 border-white pt-8">
             <p className="text-sm md:text-base text-center">
-              2020 © obey-blue.herokuapp.com - All Rights Reserved.
+              2020 © obey-blu.herokuapp.com - All Rights Reserved.
             </p>
             <p className="text-sm md:text-base font-semibold text-center mt-2">
               powered by Foxxie
